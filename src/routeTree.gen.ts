@@ -11,9 +11,16 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as GenerateChatSessionImport } from './routes/generate-chat-session'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const GenerateChatSessionRoute = GenerateChatSessionImport.update({
+  id: '/generate-chat-session',
+  path: '/generate-chat-session',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -32,6 +39,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/generate-chat-session': {
+      id: '/generate-chat-session'
+      path: '/generate-chat-session'
+      fullPath: '/generate-chat-session'
+      preLoaderRoute: typeof GenerateChatSessionImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/generate-chat-session': typeof GenerateChatSessionRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/generate-chat-session': typeof GenerateChatSessionRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/generate-chat-session': typeof GenerateChatSessionRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/generate-chat-session'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/generate-chat-session'
+  id: '__root__' | '/' | '/generate-chat-session'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GenerateChatSessionRoute: typeof GenerateChatSessionRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GenerateChatSessionRoute: GenerateChatSessionRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +96,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/generate-chat-session"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/generate-chat-session": {
+      "filePath": "generate-chat-session.ts"
     }
   }
 }
