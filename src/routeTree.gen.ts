@@ -11,14 +11,14 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as GenerateChatSessionImport } from './routes/generate-chat-session'
+import { Route as HelloWelcomeImport } from './routes/hello-welcome'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
-const GenerateChatSessionRoute = GenerateChatSessionImport.update({
-  id: '/generate-chat-session',
-  path: '/generate-chat-session',
+const HelloWelcomeRoute = HelloWelcomeImport.update({
+  id: '/hello-welcome',
+  path: '/hello-welcome',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,11 +39,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/generate-chat-session': {
-      id: '/generate-chat-session'
-      path: '/generate-chat-session'
-      fullPath: '/generate-chat-session'
-      preLoaderRoute: typeof GenerateChatSessionImport
+    '/hello-welcome': {
+      id: '/hello-welcome'
+      path: '/hello-welcome'
+      fullPath: '/hello-welcome'
+      preLoaderRoute: typeof HelloWelcomeImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,37 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/generate-chat-session': typeof GenerateChatSessionRoute
+  '/hello-welcome': typeof HelloWelcomeRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/generate-chat-session': typeof GenerateChatSessionRoute
+  '/hello-welcome': typeof HelloWelcomeRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/generate-chat-session': typeof GenerateChatSessionRoute
+  '/hello-welcome': typeof HelloWelcomeRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/generate-chat-session'
+  fullPaths: '/' | '/hello-welcome'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/generate-chat-session'
-  id: '__root__' | '/' | '/generate-chat-session'
+  to: '/' | '/hello-welcome'
+  id: '__root__' | '/' | '/hello-welcome'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  GenerateChatSessionRoute: typeof GenerateChatSessionRoute
+  HelloWelcomeRoute: typeof HelloWelcomeRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  GenerateChatSessionRoute: GenerateChatSessionRoute,
+  HelloWelcomeRoute: HelloWelcomeRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +97,14 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/generate-chat-session"
+        "/hello-welcome"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/generate-chat-session": {
-      "filePath": "generate-chat-session.ts"
+    "/hello-welcome": {
+      "filePath": "hello-welcome.ts"
     }
   }
 }
