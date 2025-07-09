@@ -1,10 +1,10 @@
-import { PlusCircle, MessageCircle, Trash2, Edit2 } from 'lucide-react';
+import { PlusCircle, MessageCircle, Trash2, Edit2 } from "lucide-react";
 
 interface SidebarProps {
   conversations: Array<{ id: string; title: string }>;
   currentConversationId: string | null;
   handleNewChat: () => void;
-  setCurrentConversationId: (id: string) => void;
+  setCurrentConversationId: (id: string | null) => void;
   handleDeleteChat: (id: string) => void;
   editingChatId: string | null;
   setEditingChatId: (id: string | null) => void;
@@ -13,26 +13,32 @@ interface SidebarProps {
   handleUpdateChatTitle: (id: string, title: string) => void;
 }
 
-export const Sidebar = ({ 
-  conversations, 
-  currentConversationId, 
-  handleNewChat, 
-  setCurrentConversationId, 
-  handleDeleteChat, 
-  editingChatId, 
-  setEditingChatId, 
-  editingTitle, 
-  setEditingTitle, 
-  handleUpdateChatTitle 
+export const Sidebar = ({
+  conversations,
+  currentConversationId,
+  handleNewChat,
+  setCurrentConversationId,
+  handleDeleteChat,
+  editingChatId,
+  setEditingChatId,
+  editingTitle,
+  setEditingTitle,
+  handleUpdateChatTitle,
 }: SidebarProps) => (
   <div className="flex flex-col w-64 bg-gray-800 border-r border-gray-700">
-    <div className="p-4 border-b border-gray-700">
+    <div className="p-4 border-b border-gray-700 flex flex-col gap-2">
       <button
         onClick={handleNewChat}
         className="flex items-center justify-center w-full gap-2 px-3 py-2 text-sm font-medium text-white rounded-lg bg-gradient-to-r from-orange-500 to-red-600 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-orange-500"
       >
         <PlusCircle className="w-4 h-4" />
         New Chat
+      </button>
+      <button
+        onClick={() => setCurrentConversationId(null)}
+        className="flex pointer-cursor items-center justify-center w-full gap-2 px-3 py-2 text-sm font-bold text-white rounded-lg bg-gradient-to-r from-gray-700 to-gray-900 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-orange-500"
+      >
+        🏠 Documentation
       </button>
     </div>
 
@@ -42,7 +48,7 @@ export const Sidebar = ({
         <div
           key={chat.id}
           className={`group flex items-center gap-3 px-3 py-2 cursor-pointer hover:bg-gray-700/50 ${
-            chat.id === currentConversationId ? 'bg-gray-700/50' : ''
+            chat.id === currentConversationId ? "bg-gray-700/50" : ""
           }`}
           onClick={() => setCurrentConversationId(chat.id)}
         >
@@ -55,17 +61,17 @@ export const Sidebar = ({
               onFocus={(e) => e.target.select()}
               onBlur={() => {
                 if (editingTitle.trim()) {
-                  handleUpdateChatTitle(chat.id, editingTitle)
+                  handleUpdateChatTitle(chat.id, editingTitle);
                 }
-                setEditingChatId(null)
-                setEditingTitle('')
+                setEditingChatId(null);
+                setEditingTitle("");
               }}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' && editingTitle.trim()) {
-                  handleUpdateChatTitle(chat.id, editingTitle)
-                } else if (e.key === 'Escape') {
-                  setEditingChatId(null)
-                  setEditingTitle('')
+                if (e.key === "Enter" && editingTitle.trim()) {
+                  handleUpdateChatTitle(chat.id, editingTitle);
+                } else if (e.key === "Escape") {
+                  setEditingChatId(null);
+                  setEditingTitle("");
                 }
               }}
               className="flex-1 text-sm text-white bg-transparent focus:outline-none"
@@ -79,9 +85,9 @@ export const Sidebar = ({
           <div className="items-center hidden gap-1 group-hover:flex">
             <button
               onClick={(e) => {
-                e.stopPropagation()
-                setEditingChatId(chat.id)
-                setEditingTitle(chat.title)
+                e.stopPropagation();
+                setEditingChatId(chat.id);
+                setEditingTitle(chat.title);
               }}
               className="p-1 text-gray-400 hover:text-white"
             >
@@ -89,8 +95,8 @@ export const Sidebar = ({
             </button>
             <button
               onClick={(e) => {
-                e.stopPropagation()
-                handleDeleteChat(chat.id)
+                e.stopPropagation();
+                handleDeleteChat(chat.id);
               }}
               className="p-1 text-gray-400 hover:text-red-500"
             >
@@ -101,4 +107,4 @@ export const Sidebar = ({
       ))}
     </div>
   </div>
-); 
+);
