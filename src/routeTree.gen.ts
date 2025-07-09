@@ -11,16 +11,9 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as HelloWelcomeImport } from './routes/hello-welcome'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
-
-const HelloWelcomeRoute = HelloWelcomeImport.update({
-  id: '/hello-welcome',
-  path: '/hello-welcome',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -39,13 +32,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/hello-welcome': {
-      id: '/hello-welcome'
-      path: '/hello-welcome'
-      fullPath: '/hello-welcome'
-      preLoaderRoute: typeof HelloWelcomeImport
-      parentRoute: typeof rootRoute
-    }
   }
 }
 
@@ -53,37 +39,32 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/hello-welcome': typeof HelloWelcomeRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/hello-welcome': typeof HelloWelcomeRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/hello-welcome': typeof HelloWelcomeRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/hello-welcome'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/hello-welcome'
-  id: '__root__' | '/' | '/hello-welcome'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  HelloWelcomeRoute: typeof HelloWelcomeRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  HelloWelcomeRoute: HelloWelcomeRoute,
 }
 
 export const routeTree = rootRoute
@@ -96,15 +77,11 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/hello-welcome"
+        "/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
-    },
-    "/hello-welcome": {
-      "filePath": "hello-welcome.ts"
     }
   }
 }
