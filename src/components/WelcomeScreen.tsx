@@ -12,7 +12,9 @@ const triggerSubmit = (input: string) => {
     textarea.value = input;
   }
   const submitButton = document.querySelector("button[type='submit']");
-  return submitButton?.click();
+  if (submitButton) {
+    (submitButton as HTMLButtonElement).click();
+  }
 };
 
 export const WelcomeScreen = ({

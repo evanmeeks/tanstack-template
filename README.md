@@ -7,6 +7,7 @@ A modern chat template built with TanStack Router and Claude AI integration feat
 **⚡ View demo:** [https://tanstack-starter.netlify.app/](https://tanstack-starter.netlify.app/)
 
 ## Table of Contents
+
 - [Deploy to Netlify](#deploy-to-netlify)
 - [Features](#-features)
   - [AI Capabilities](#ai-capabilities)
@@ -45,12 +46,14 @@ Clicking this button will create a new repo for you that looks exactly like this
 ## Features
 
 ### AI Capabilities
-- 🤖 Powered by Claude 3.5 Sonnet 
+
+- 🤖 Powered by Claude 3.5 Sonnet
 - 📝 Rich markdown formatting with syntax highlighting
 - 🎯 Customizable system prompts for tailored AI behavior
-- 🔄 Real-time message updates and streaming responses
+- 👤 Real-time message updates and streaming responses
 
 ### User Experience
+
 - 🎨 Modern UI with Tailwind CSS and Lucide icons
 - 🔍 Conversation management
 - 🔐 API key management
@@ -59,6 +62,7 @@ Clicking this button will create a new repo for you that looks exactly like this
 ## Architecture
 
 ### Tech Stack
+
 - **Frontend Framework**: React 19 with TanStack Start
 - **Routing**: TanStack Router
 - **State Management**: TanStack Store
@@ -116,31 +120,36 @@ tanstack-template/
 Follow these steps to set up and run the project locally:
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/netlify-templates/tanstack-template.git
    cd tanstack-template
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.example .env
    ```
-   
+
    Then edit the `.env` file with your credentials:
+
    - Required: Add your Anthropic API key (`VITE_ANTHROPIC_API_KEY`)
    - Optional: Add Convex URL if using database features (`VITE_CONVEX_URL`)
    - Optional: Add Sentry credentials for error monitoring (`VITE_SENTRY_DSN`, `SENTRY_AUTH_TOKEN`)
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    ```
-   
+
    The application should now be running at [http://localhost:3000](http://localhost:3000)
 
 ### Local Setup with Netlify Dev (Recommended)
@@ -148,21 +157,27 @@ Follow these steps to set up and run the project locally:
 You can also use [Netlify Dev](https://www.netlify.com/products/dev/) to run your application locally with Netlify's full functionality:
 
 1. **Install Netlify CLI globally** (if you haven't already)
+
    ```bash
    npm install -g netlify-cli
    ```
 
 2. **Link your Netlify site** (optional)
+
    ```bash
    netlify link
    ```
+
    This will connect your local project to a Netlify site. If you haven't created a Netlify site yet, you can skip this step.
 
 3. **Start the development server with Netlify Dev**
+
    ```bash
    netlify dev
    ```
+
    This will:
+
    - Start your local development server (similar to `npm run dev`)
    - Load your Netlify environment variables
    - Provide local versions of Netlify Functions (if any)
@@ -174,6 +189,7 @@ You can also use [Netlify Dev](https://www.netlify.com/products/dev/) to run you
 ### Troubleshooting
 
 - **Node.js version**: Ensure you're using Node.js v20.9 or higher. You can check your version with `node -v`.
+
   ```bash
   # Using nvm to install and use the correct Node version
   nvm install 20.9
@@ -252,6 +268,7 @@ VITE_CONVEX_URL=your_convex_deployment_url
 ```
 
 ## Routing
+
 This project uses [TanStack Router](https://tanstack.com/router). The initial setup is a file based router. Which means that the routes are managed as files in `src/routes`.
 
 ### Adding A Route
@@ -287,8 +304,8 @@ In the File Based Routing setup the layout is located in `src/routes/__root.tsx`
 Here is an example layout that includes a header:
 
 ```tsx
-import { createRootRoute, Outlet } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
 import { Link } from "@tanstack/react-router";
 
@@ -305,7 +322,7 @@ export const Route = createRootRoute({
       <TanStackRouterDevtools />
     </>
   ),
-})
+});
 ```
 
 The `<TanStackRouterDevtools />` component is not required so you can remove it if you don't want it in your layout.
